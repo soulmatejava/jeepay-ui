@@ -9,7 +9,6 @@
             <a-form-item label="" class="table-head-layout">
               <a-select v-model="searchData.state" placeholder="状态" default-value="">
                 <a-select-option value="">全部</a-select-option>
-
                 <a-select-option value="0">禁用</a-select-option>
                 <a-select-option value="1">启用</a-select-option>
               </a-select>

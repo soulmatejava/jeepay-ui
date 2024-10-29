@@ -305,3 +305,12 @@ export function resendDivision (recordId) {
     method: 'POST'
   })
 }
+
+/** 回调 */
+export function callbackPankou (payOrderId) {
+  return request.request({
+    url: '/api/payOrder/callbackPankou',
+    method: 'GET',
+    params: { payOrderId }
+  })
+}

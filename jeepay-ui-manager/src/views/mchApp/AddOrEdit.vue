@@ -42,6 +42,11 @@
             <a-button type="primary" ghost @click="randomKey(false, 128, 0)"><a-icon type="file-sync" />随机生成私钥</a-button>
           </a-form-model-item>
         </a-col>
+        <a-col :span="24">
+          <a-form-model-item label="盘口地址" prop="pankouUrl">
+            <a-input v-model="saveObject.pankouUrl" placeholder="请输入" />
+          </a-form-model-item>
+        </a-col>
         <a-col :span="12">
           <a-form-model-item label="备注" prop="remark">
             <a-input v-model="saveObject.remark" placeholder="请输入" />
@@ -74,7 +79,8 @@ export default {
       saveObject: {}, // 数据对象
       rules: {
         mchNo: [{ required: true, message: '请输入商户号', trigger: 'blur' }],
-        appName: [{ required: true, message: '请输入应用名称', trigger: 'blur' }]
+        appName: [{ required: true, message: '请输入应用名称', trigger: 'blur' }],
+        pankouUrl: [{ required: true, message: '请输入回调地址', trigger: 'blur' }]
       }
     }
   },

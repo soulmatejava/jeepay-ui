@@ -37,6 +37,29 @@
             <a-button type="primary" ghost @click="randomKey(false, 128, 0)"><a-icon type="file-sync" />随机生成私钥</a-button>
           </a-form-model-item>
         </a-col>
+        <a-col :span="24">
+          <a-form-model-item label="盘口地址" prop="pankouUrl">
+            <a-input v-model="saveObject.pankouUrl" placeholder="请输入" />
+          </a-form-model-item>
+        </a-col>
+        <!-- <a-col :span="24">
+          <a-form-item label="加密类型" class="table-head-layout">
+              <a-select v-model="saveObject.state" placeholder="状态" default-value="">
+                <a-select-option value="0">1</a-select-option>
+                <a-select-option value="1">2</a-select-option>
+                <a-select-option value="2">3</a-select-option>
+                <a-select-option value="3">4</a-select-option>
+                <a-select-option value="4">5</a-select-option>
+                <a-select-option value="5">6</a-select-option>
+              </a-select>
+            </a-form-item>
+          </a-col> -->
+        <a-col :span="24">
+          <a-form-model-item label="私钥 AppSecret" prop="appSecret" >
+            <a-input v-model="saveObject.appSecret" :placeholder="saveObject.appSecret_ph" type="textarea" />
+            <a-button type="primary" ghost @click="randomKey(false, 128, 0)"><a-icon type="file-sync" />随机生成私钥</a-button>
+          </a-form-model-item>
+        </a-col>
         <a-col :span="12">
           <a-form-model-item label="备注" prop="remark">
             <a-input v-model="saveObject.remark" placeholder="请输入" />
@@ -68,7 +91,8 @@ export default {
       appId: '', // 应用AppId
       saveObject: {}, // 数据对象
       rules: {
-        appName: [{ required: true, message: '请输入应用名称', trigger: 'blur' }]
+        appName: [{ required: true, message: '请输入应用名称', trigger: 'blur' }],
+        pankouUrl: [{ required: true, message: '请输入回调地址', trigger: 'blur' }]
       }
     }
   },

@@ -116,6 +116,7 @@
         <template slot="opSlot" slot-scope="{record}">  <!-- 操作列插槽 -->
           <JeepayTableColumns>
             <a-button type="link" v-if="$access('ENT_PAY_ORDER_VIEW')" @click="detailFunc(record.payOrderId)">详情</a-button>
+            <a-button type="link" v-if="$access('ENT_PAY_ORDER_PANKOUURL')" style="color: green" v-show="(record.state !== 2)"  @click="pankouFunc(record.payOrderId)">回调</a-button>
             <a-button type="link" v-if="$access('ENT_PAY_ORDER_REFUND')" style="color: red" v-show="(record.state === 2 && record.refundState !== 2)" @click="openFunc(record, record.payOrderId)">退款</a-button>
           </JeepayTableColumns>
         </template>
@@ -376,7 +377,7 @@ import JeepayTextUp from '@/components/JeepayTextUp/JeepayTextUp' // 文字上�
 import JeepayTable from '@/components/JeepayTable/JeepayTable'
 import JeepayTableColumns from '@/components/JeepayTable/JeepayTableColumns'
 import RefundModal from './RefundModal' // 退款弹出框
-import { API_URL_PAY_ORDER_LIST, API_URL_PAYWAYS_LIST, req } from '@/api/manage'
+import { API_URL_PAY_ORDER_LIST, API_URL_PAYWAYS_LIST, req, callbackPankou } from '@/api/manage'
 import moment from 'moment'
 
 // eslint-disable-next-line no-unused-vars
@@ -391,7 +392,7 @@ const tableColumns = [
   { key: 'state', title: '支付状态', scopedSlots: { customRender: 'stateSlot' } },
   { key: 'divisionState', title: '分账状态', scopedSlots: { customRender: 'divisionStateSlot' }, align: 'center' },
   { key: 'createdAt', dataIndex: 'createdAt', title: '创建日期' },
-  { key: 'op', title: '操作', width: '120px', fixed: 'right', align: 'center', scopedSlots: { customRender: 'opSlot' } }
+  { key: 'op', title: '操作', width: '160px', fixed: 'right', align: 'center', scopedSlots: { customRender: 'opSlot' } }
 ]
 
 export default {
@@ -462,6 +463,17 @@ export default {
     changeStr2ellipsis (orderNo, baseLength) {
       const halfLengh = parseInt(baseLength / 2)
       return orderNo.substring(0, halfLengh - 1) + '...' + orderNo.substring(orderNo.length - halfLengh, orderNo.length)
+    },
+    // 回调
+    pankouFunc: function (recordId) {
+      console.log('recordId', recordId)
+      const that = this
+      this.$infoBox.confirmDanger('确认手动回调？', '该操作将重新发起盘口信息补充', () => {
+        callbackPankou(recordId).then(res => {
+          that.$message.success('回调成功')
+          this.searchFunc()
+        })
+      })
     }
   }
 }

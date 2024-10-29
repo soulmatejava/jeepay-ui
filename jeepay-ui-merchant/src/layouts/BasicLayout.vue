@@ -17,9 +17,9 @@
     <template v-slot:menuHeaderRender>
       <div>
         <!-- 当侧边栏卷起来的时候，切换仅有J字母的图标 -->
-        <img src="@/assets/logo-j.svg" alt="jeequan">
+        <img src="@/assets/niu.svg" alt="jeequan">
         <!-- 在这里可以添加title，我们以图片的方式替代文字 -->
-        <img v-show="!collapsed" src="@/assets/svg/jeepay.svg" alt="jeepay" style="width:90px;margin: 5px 0 0 5px">
+        <img v-show="!collapsed" src="@/assets/svg/huafan.svg" alt="jeepay" style="width:60px;margin: 5px 0 0 10px">
       </div>
     </template>
     <!-- 1.0.0+ 版本 pro-layout 提供 API,
@@ -35,8 +35,6 @@
 
     <template v-slot:rightContentRender>
       <right-content :top-menu="settings.layout === 'topmenu'" :is-mobile="isMobile" :theme="settings.theme" />
-      <a style="color: red; float: right; padding-right: 10px;" href="https://www.jeequan.com/product/jeepay4plus.html" target="_blank">Plus商业版</a>
-      <a style="color: red; float: right; padding-right: 10px;" href="https://www.jeequan.com/ifstore/list.html" target="_blank">接口市场</a>
     </template>
     <!-- custom footer / 自定义Footer -->
     <template v-slot:footerRender>

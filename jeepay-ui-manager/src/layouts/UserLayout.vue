@@ -8,7 +8,7 @@
         <div class="top">
           <div class="header">
             <a href="/">
-              <img src="~@/assets/logo.svg" class="logo" alt="logo">
+              <img src="~@/assets/huafanlog.svg" class="logo" alt="logo">
             </a>
           </div>
           <div class="desc">
@@ -103,7 +103,7 @@ export default {
           }
 
           .logo {
-            height: 44px;
+            height: 124px;
             vertical-align: top;
             border-style: none;
           }
